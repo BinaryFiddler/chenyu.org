@@ -47,7 +47,7 @@ const Summary = () => {
                 <br />
                 <span className="font-bold">More about me</span>
                 <br />
-                Professionally, I work as a software engineer at a large company. When I'm not at work, you 
+                Professionally, I work as a software engineer at a large company. When I am not at work, you 
                 are most likely finding me practicing the violin, reading random wikipedia entries, or mindlessly 
                 browsing YouTube. I also enjoy cooking and baking from time to time.
                 <br />
