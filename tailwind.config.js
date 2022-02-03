@@ -1,13 +1,13 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'accent-1': '#FAFAFA',
-        'accent-2': '#EAEAEA',
-        'accent-7': '#333',
-        success: '#0070f3',
-        cyan: '#79FFE1',
+        primary: colors.neutral,
+        secondary: colors.cyan,
       },
       spacing: {
         28: '7rem',
@@ -17,6 +17,10 @@ module.exports = {
       },
       lineHeight: {
         tight: 1.2,
+      },
+      fontFamily: {
+        sans: ['Graphik', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
       },
       fontSize: {
         '5xl': '2.5rem',
