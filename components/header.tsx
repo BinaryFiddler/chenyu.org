@@ -11,6 +11,12 @@ const Header = () => {
           <Link href="/" passHref><div>{"What's New"}</div></Link>
         </li>
         <li className="text-2x font-medium mr-6 hover:underline">
+          <Link href="/music" passHref><div>{"Music"}</div></Link>
+        </li>
+        <li className="text-2x font-medium mr-6 hover:underline">
+          <Link href="/drawing" passHref><div>{"Drawing"}</div></Link>
+        </li>
+        <li className="text-2x font-medium mr-6 hover:underline">
           <Link href="/about" passHref><div>{"About"}</div></Link>
         </li>
         <li className="text-2x font-medium hover:underline">
