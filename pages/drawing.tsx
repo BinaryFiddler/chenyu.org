@@ -1,19 +1,53 @@
+import React, { useState, useCallback } from "react";
 import Container from '../components/container'
 import Header from '../components/header'
 import Layout from '../components/layout'
 import Head from 'next/head'
-import Image from 'next/image'
 import { getAllDrawings } from '../lib/api'
+import Gallery from 'react-photo-gallery-next'
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 // TODO: scan drawing, figure out storage option
 // Fetch drawing through API
-// Styling
 
 type Props = {
   allDrawings: string[]
 }
 
+const photos = [
+  {
+    title: 'title 1',
+    src: '/assets/blog/authors/hcy.jpeg',
+    width: 4,
+    height: 4
+  },
+  {
+    src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
+    width: 4,
+    height: 3
+  },
+  {
+    src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
+    width: 1,
+    height: 1
+  },
+]
+
 const DrawingPage = ({ allDrawings }: Props) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+  }, []);
+
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setViewerIsOpen(false);
+  };
+
   return (
     <>
       <Layout>
@@ -23,15 +57,15 @@ const DrawingPage = ({ allDrawings }: Props) => {
         <Container>
           <Header />
           <Summary />
-          {allDrawings.map((drawing, idx) => (
-            <Image 
-              key={idx}
-              src={"/assets/blog/authors/hcy.jpeg"}
-              alt="drawing"
-              width={300}
-              height={300}
-            />
-          ))}
+          <Gallery photos={photos} onClick={openLightbox} direction='column'/>
+          {viewerIsOpen ? 
+          <Lightbox
+            mainSrc={photos[currentImage].src}
+            nextSrc={photos[(currentImage + 1) % photos.length].src}
+            prevSrc={photos[(currentImage + photos.length - 1) % photos.length].src}
+            onCloseRequest={closeLightbox}
+            onMovePrevRequest={() => setCurrentImage((currentImage + photos.length - 1) % photos.length)}
+            onMoveNextRequest={() => setCurrentImage((currentImage + 1) % photos.length)}/> : null}
         </Container>
       </Layout>
     </>
