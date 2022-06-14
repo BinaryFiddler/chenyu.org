@@ -32,10 +32,11 @@ const Music = ({ allVideos }: MusicPageProps) => {
           </h1>
           <hr />
           <div className='flex flex-row flex-wrap justify-around'>
-            {allVideos.map((video) => (
+            {allVideos.map((video, index) => (
                 <VideoBox 
-                title={video.title}
-                link={video.link}
+                    key={index}
+                    title={video.title}
+                    link={video.link}
                 />
             ))}
           </div>
