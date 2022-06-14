@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { youtubeVideos } from './youtube-videos'
 
 const postsDirectory = join(process.cwd(), '_posts')
 
@@ -47,7 +48,7 @@ export function getAllPosts(fields: string[] = []) {
 }
 
 export function getAllMusicVideos(fields: string[] = []) {
-
+  return youtubeVideos
 }
 
 export function getAllDrawings(fields: string[] = []) {

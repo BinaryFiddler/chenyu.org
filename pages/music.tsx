@@ -2,12 +2,21 @@ import Container from '../components/container'
 import Header from '../components/header'
 import Layout from '../components/layout'
 import Head from 'next/head'
+import { getAllMusicVideos } from '../lib/api'
+import YoutubeVideo from '../types/youtube-video'
 
 // todo: call youtube api to get all video links
-// Style youtube video box
-// Group youtube videos by play list
 
-const Music = () => {
+type MusicPageProps = {
+    allVideos: YoutubeVideo[]
+}
+
+type VideoProps = {
+    title: string,
+    link: string
+}
+
+const Music = ({ allVideos }: MusicPageProps) => {
   return (
     <>
       <Layout>
@@ -18,7 +27,18 @@ const Music = () => {
           <Header />
           <Summary />
           <br />
-          <MusicVideos />
+          <h1 className="text-2xl font-bold tracking-tighter">
+                {"Chenyu's performances"}
+          </h1>
+          <hr />
+          <div className='flex flex-row flex-wrap justify-around'>
+            {allVideos.map((video) => (
+                <VideoBox 
+                title={video.title}
+                link={video.link}
+                />
+            ))}
+          </div>
         </Container>
       </Layout>
     </>
@@ -29,7 +49,7 @@ const Summary = () => {
     return (
         <>
             <h1 className="text-2xl font-bold tracking-tighter">
-                Music (Under construction)
+                Music
             </h1>
             <hr />
             <p className="text-1xl leading-10 tracking-widest mb-2">
@@ -44,30 +64,26 @@ const Summary = () => {
     )
 }
 
-const MusicVideos = () => {
+const VideoBox = ({title, link}: VideoProps) => {
     return (
-        <>
-            <h1 className="text-2xl font-bold tracking-tighter">
-                {"Chenyu's performances"}
-            </h1>
-            <hr />
-            <YoutubeVideo />
-        </>
+        <div className='flex flex-col mx-4 my-2'>
+            <iframe
+                src={link}
+                allow="autoplay; encrypted-media"
+                allowFullScreen={true}
+                title={title}
+            />
+            <p>{title}</p>
+        </div>
     )
 }
 
-const YoutubeVideo = () => {
-    return (
-        <>
-            <iframe
-                src="https://www.youtube.com/embed/7WYo6bML2P0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen={true}
-                title="video"
-            />{" "}
-            <p>Music video title</p>
-        </>
-    )
-}
+export const getStaticProps = async () => {
+    const allVideos = getAllMusicVideos([])
+  
+    return {
+      props: { allVideos },
+    }
+  }
 
 export default Music
