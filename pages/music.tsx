@@ -80,7 +80,7 @@ const VideoBox = ({title, link}: VideoProps) => {
 }
 
 export const getStaticProps = async () => {
-    const allVideos = getAllMusicVideos([])
+    const allVideos = getAllMusicVideos()
   
     return {
       props: { allVideos },

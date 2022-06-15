@@ -38,6 +38,9 @@ const Summary = () => {
                 are most likely finding me practicing the violin, reading random wikipedia entries, sampling fresh pastries at local bakeries. 
                 I like all things art related, museum, theaters, concerts, etc.
                 <br />
+                <span className="font-bold">Contact</span>
+                <hr/>
+                To contact me, please write to me at itschenyu@gmail.com
             </p>
         </>
     )

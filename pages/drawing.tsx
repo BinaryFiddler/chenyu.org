@@ -9,30 +9,17 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
 // TODO: scan drawing, figure out storage option
-// Fetch drawing through API
+// Store drawings on persistent storage, fetch drawing through API
 
-type Props = {
-  allDrawings: string[]
+type Drawing = {
+  src: string,
+  width: number,
+  height: number
 }
 
-const photos = [
-  {
-    title: 'title 1',
-    src: '/assets/blog/authors/hcy.jpeg',
-    width: 4,
-    height: 4
-  },
-  {
-    src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-    width: 4,
-    height: 3
-  },
-  {
-    src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
-    width: 1,
-    height: 1
-  },
-]
+type Props = {
+  allDrawings: Drawing[]
+}
 
 const DrawingPage = ({ allDrawings }: Props) => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -57,15 +44,15 @@ const DrawingPage = ({ allDrawings }: Props) => {
         <Container>
           <Header />
           <Summary />
-          <Gallery photos={photos} onClick={openLightbox} direction='column'/>
+          <Gallery photos={allDrawings} onClick={openLightbox} direction='column'/>
           {viewerIsOpen ? 
           <Lightbox
-            mainSrc={photos[currentImage].src}
-            nextSrc={photos[(currentImage + 1) % photos.length].src}
-            prevSrc={photos[(currentImage + photos.length - 1) % photos.length].src}
+            mainSrc={allDrawings[currentImage].src}
+            nextSrc={allDrawings[(currentImage + 1) % allDrawings.length].src}
+            prevSrc={allDrawings[(currentImage + allDrawings.length - 1) % allDrawings.length].src}
             onCloseRequest={closeLightbox}
-            onMovePrevRequest={() => setCurrentImage((currentImage + photos.length - 1) % photos.length)}
-            onMoveNextRequest={() => setCurrentImage((currentImage + 1) % photos.length)}/> : null}
+            onMovePrevRequest={() => setCurrentImage((currentImage + allDrawings.length - 1) % allDrawings.length)}
+            onMoveNextRequest={() => setCurrentImage((currentImage + 1) % allDrawings.length)}/> : null}
         </Container>
       </Layout>
     </>
@@ -76,7 +63,7 @@ const Summary = () => {
     return (
         <>
             <h1 className="text-2xl font-bold tracking-tighter">
-                Drawing (Under construction)
+                Drawing
             </h1>
             <hr />
             <p className="text-1xl leading-10 tracking-widest mb-2">
@@ -91,7 +78,7 @@ const Summary = () => {
 }
 
 export const getStaticProps = async () => {
-  const allDrawings = getAllDrawings([])
+  const allDrawings = getAllDrawings()
 
   return {
     props: { allDrawings },
