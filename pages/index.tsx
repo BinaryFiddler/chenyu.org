@@ -1,44 +1,22 @@
-import Container from '../components/container'
-import AllPosts from '../components/all-posts'
-import Header from '../components/header'
-import Layout from '../components/layout'
-import { getAllPosts } from '../lib/api'
-import Head from 'next/head'
-import Post from '../types/post'
-
-type Props = {
-  allPosts: Post[]
-}
-
-const Index = ({ allPosts }: Props) => {
-  return (
-    <>
-      <Layout>
-        <Head>
-          <title>Finding Chenyu</title>
-        </Head>
-        <Container>
-          <Header />
-          <AllPosts posts={allPosts} />
-        </Container>
-      </Layout>
-    </>
-  )
-}
-
-export default Index
+import * as React from 'react'
+import { domain } from 'lib/config'
+import { resolveNotionPage } from 'lib/resolve-notion-page'
+import { NotionPage } from 'components'
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
+  try {
+    const props = await resolveNotionPage(domain)
 
-  return {
-    props: { allPosts },
+    return { props, revalidate: 10 }
+  } catch (err) {
+    console.error('page error', domain, err)
+
+    // we don't want to publish the error version of this page, so
+    // let next.js know explicitly that incremental SSG failed
+    throw err
   }
+}
+
+export default function NotionDomainPage(props) {
+  return <NotionPage {...props} />
 }
