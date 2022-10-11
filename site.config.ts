@@ -9,19 +9,19 @@ export default siteConfig({
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'Next.js Notion Starter Kit',
-  domain: 'nextjs-notion-starter-kit.transitivebullsh.it',
-  author: 'Travis Fischer',
+  name: 'Finding Chenyu',
+  domain: 'chenyuh.org',
+  author: 'Chenyu Huang',
 
   // open graph metadata (optional)
-  description: 'Example Next.js Notion Starter Kit Site',
+  description: 'Finding Chenyu',
 
   // social usernames (optional)
-  twitter: 'transitive_bs',
-  github: 'transitive-bullshit',
-  linkedin: 'fisch2',
+  twitter: 'chenyu_huang',
+  github: 'chenyu-h',
+  linkedin: 'chenyu-h-8228a584',
   // newsletter: '#', // optional newsletter URL
-  // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
+  youtube: 'channel/UCbaPf-YaxS_HtbMkjGnQDMg', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
@@ -49,16 +49,24 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages
-  navigationStyle: 'default'
-  // navigationStyle: 'custom',
-  // navigationLinks: [
-  //   {
-  //     title: 'About',
-  //     pageId: 'f1199d37579b41cbabfc0b5174f4256a'
-  //   },
-  //   {
-  //     title: 'Contact',
-  //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
-  //   }
-  // ]
+  // navigationStyle: 'default'
+  navigationStyle: 'custom',
+  navigationLinks: [
+    {
+      title: 'Now',
+      pageId: 'a4a2367340314a7f80a19d1e12fc90b1'
+    },
+    {
+      title: 'Blog',
+      pageId: '51005d1e2d1b447caa38fde39ee83522'
+    },
+    {
+      title: 'About',
+      pageId: 'c7923d588bc94f68bbb9931e1e66f8af'
+    },
+    {
+      title: 'Hobbies',
+      pageId: '83d62afcc93f427d86b88b56cec43271'
+    }
+  ]
 })

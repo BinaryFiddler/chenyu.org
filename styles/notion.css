@@ -163,7 +163,7 @@
 
 .notion-title {
   display: block;
-  text-align: center;
+  text-align: left;
 }
 
 .notion-collection-row {
@@ -176,7 +176,7 @@
 
 .notion-collection-row-property .notion-property {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 .notion-collection-row-value {
@@ -205,7 +205,7 @@
   }
 }
 
-.notion-block-ab9a258d6cf444f3bb40dc2600feae91 .notion-page-link {
+.notion-block-8a09e23d4e044ba2a95f8111dc7baefe .notion-page-link {
   justify-content: center;
   padding: 2em;
 }
@@ -373,12 +373,4 @@
 .notion-bookmark:hover {
   border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
   border-image-slice: 1;
-}
-
-.notion-block-ab9a258d6cf444f3bb40dc2600feae91 .notion-column {
-  padding: 0;
-}
-
-.notion-block-260baa77f1e1428b97fb14ac99c7c385 {
-  display: none;
 }
